@@ -6,19 +6,20 @@ const initialState = {
 
 export function countReducer(state, action) {
   switch (action.type) {
-    case 'increment':
+    case 'increment': {
       return {
         ...state,
-        count: state.count + 1,
+        count: state.count + (action.payload || 1)
       }
+    }
 
-    case 'decrement':
-      return state.count > 0
-        ? {
-          ...state,
-          count: state.count - 1,
-        }
-        : state
+    case 'decrement': {
+      const count = state.count - (action.payload || 1)
+      return {
+        ...state,
+        count: count < 0 ? 0 : count
+      }
+    }
 
     case 'reset':
       return {

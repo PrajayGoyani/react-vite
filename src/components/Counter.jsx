@@ -9,6 +9,13 @@ export default function Counter({ label }) {
       <button
         type="button"
         className="counter"
+        onClick={() => dispatch({ type: 'decrement', payload: 5 })}
+      >
+        -5
+      </button>
+      <button
+        type="button"
+        className="counter"
         onClick={() => dispatch({ type: 'decrement' })}
       >
         -
@@ -34,6 +41,13 @@ export default function Counter({ label }) {
         onClick={() => dispatch({ type: 'reset' })}
       >
         Reset
+      </button>
+      <button
+        type="button"
+        className="counter"
+        onClick={() => dispatch({ type: 'increment', payload: 5 })}
+      >
+        +5
       </button>
     </div>
   )
