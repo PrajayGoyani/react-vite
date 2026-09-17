@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Default from './components/Default'
 import LibraryApp from './components/LibraryApp'
-import { CounterProvider } from './context/CounterContext'
+import CounterProvider from './context/CounterProvider'
 
 type TabType = 'library' | 'counter'
 

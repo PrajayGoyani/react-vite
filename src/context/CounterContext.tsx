@@ -1,25 +1,17 @@
-import { useEffect, type ReactNode } from 'react'
-import { useCountReducer } from '../reducers/reducers'
-import { CounterContext } from './consume'
+import { createContext, useContext, type Dispatch } from "react"
+import type { CountAction } from "../reducers/reducers"
 
-export interface CounterProviderProps {
-  children: ReactNode
+interface CounterContextType {
+  countState: number
+  dispatchCount: Dispatch<CountAction>
 }
 
-export function CounterProvider({ children }: CounterProviderProps) {
-  const [state, dispatch] = useCountReducer()
+export const CounterContext = createContext<CounterContextType | null>(null)
 
-  useEffect(() => {
-    console.log('Hello world')
-  }, [])
-
-  useEffect(() => {
-    console.log(`Count: ${state.count}`)
-  }, [state.count])
-
-  return (
-    <CounterContext value={{ countState: state.count, dispatchCount: dispatch }}>
-      {children}
-    </CounterContext>
-  )
+export function useCounter(): CounterContextType {
+  const context = useContext(CounterContext)
+  if (!context) {
+    throw new Error('useCounter must be used within a CounterProvider')
+  }
+  return context
 }
