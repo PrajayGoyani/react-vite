@@ -1,11 +1,14 @@
 import { useCountReducer } from '../reducers/reducers'
 
-export default function Counter({ label }) {
-  // const { count, increment, decrement } = useCounter()
+export interface CounterProps {
+  label: string
+}
+
+export default function Counter({ label }: CounterProps) {
   const [state, dispatch] = useCountReducer()
 
   return (
-    <div style={{ display: "flex", gap: "10px" }}>
+    <div style={{ display: 'flex', gap: '10px' }}>
       <button
         type="button"
         className="counter"
@@ -51,5 +54,4 @@ export default function Counter({ label }) {
       </button>
     </div>
   )
-
 }

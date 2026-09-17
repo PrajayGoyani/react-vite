@@ -4,8 +4,10 @@ import Default from './components/Default'
 import LibraryApp from './components/LibraryApp'
 import { CounterProvider } from './context/CounterContext'
 
+type TabType = 'library' | 'counter'
+
 function App() {
-  const [activeTab, setActiveTab] = useState('library')
+  const [activeTab, setActiveTab] = useState<TabType>('library')
 
   return (
     <>
@@ -14,13 +16,13 @@ function App() {
           className={`nav-btn ${activeTab === 'library' ? 'active' : ''}`}
           onClick={() => setActiveTab('library')}
         >
-          📚 Library Store (Zustand)
+          Library Store (Zustand)
         </button>
         <button
           className={`nav-btn ${activeTab === 'counter' ? 'active' : ''}`}
           onClick={() => setActiveTab('counter')}
         >
-          🔢 Counter Demo
+          Counter Demo
         </button>
       </nav>
 
@@ -36,4 +38,3 @@ function App() {
 }
 
 export default App
-

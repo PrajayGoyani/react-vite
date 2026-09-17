@@ -1,11 +1,9 @@
 import heroImg from '../assets/hero.png'
 import reactLogo from '../assets/react.svg'
 import viteLogo from '../assets/vite.svg'
-import { useCounter } from '../context/CounterContext'
 import Counter from './Counter'
 
 export default function Default() {
-
   return (
     <>
       <section id="center">
@@ -17,13 +15,13 @@ export default function Default() {
         <div>
           <h1>Get started</h1>
           <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
           </p>
         </div>
         <div style={{ gap: '10px', display: 'flex', flexDirection: 'column' }}>
-          <Counter label={'Counter One'} />
-          <Counter label={'Counter Two'} />
-          <Counter label={'Counter Three'} />
+          <Counter label="Counter One" />
+          <Counter label="Counter Two" />
+          <Counter label="Counter Three" />
         </div>
       </section>
 
