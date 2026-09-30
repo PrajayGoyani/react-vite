@@ -1,40 +1,55 @@
-import { useState } from 'react'
+import { Routes, Route, NavLink, Navigate } from 'react-router'
 import './App.css'
 import Default from './components/Default'
 import LibraryApp from './components/LibraryApp'
+import NotFound from './components/NotFound'
+import Subscription from './components/Subscription'
 import CounterProvider from './context/CounterProvider'
 
-type TabType = 'library' | 'counter'
-
 function App() {
-  const [activeTab, setActiveTab] = useState<TabType>('library')
-
   return (
     <>
       <nav className="app-nav">
-        <button
-          className={`nav-btn ${activeTab === 'library' ? 'active' : ''}`}
-          onClick={() => setActiveTab('library')}
+        <NavLink
+          to="/library"
+          className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}
         >
           Library Store (Zustand)
-        </button>
-        <button
-          className={`nav-btn ${activeTab === 'counter' ? 'active' : ''}`}
-          onClick={() => setActiveTab('counter')}
+        </NavLink>
+        <NavLink
+          to="/counter"
+          className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}
         >
           Counter Demo
-        </button>
+        </NavLink>
+        <NavLink
+          to="/subscription"
+          className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}
+        >
+          Stripe Subscription
+        </NavLink>
       </nav>
 
-      {activeTab === 'library' && <LibraryApp />}
-
-      {activeTab === 'counter' && (
-        <CounterProvider>
-          <Default />
-        </CounterProvider>
-      )}
+      <main>
+        <Routes>
+          <Route path="/" element={<Navigate to="/library" replace />} />
+          <Route path="/library" element={<LibraryApp />} />
+          <Route
+            path="/counter"
+            element={
+              <CounterProvider>
+                <Default />
+              </CounterProvider>
+            }
+          />
+          <Route path="/subscription" element={<Subscription />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
     </>
   )
 }
 
 export default App
+
+
